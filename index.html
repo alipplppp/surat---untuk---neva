@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Letter For Nepaa ♡</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box} :root{--pink-bg:#FFF0F3;--paper:#fffdfb;--text:#49383c}
+body{min-height:100vh;overflow-x:hidden;background:var(--pink-bg);font-family:Arial,sans-serif;color:var(--text)}
+#loading{position:fixed;inset:0;background:#FFF0F3;display:flex;align-items:center;justify-content:center;z-index:100;transition:opacity .8s ease}
+.loading-box{text-align:center}.loading-heart{font-size:28px;color:#d26a80;animation:pulse 1s infinite;margin-bottom:16px}.loading-text{font-size:11px;letter-spacing:4px;font-weight:600;color:#9e6571}.loading-line{width:160px;height:2px;margin:18px auto;background:#f3ced6;overflow:hidden}.loading-line:after{content:"";display:block;width:50%;height:100%;background:#c96b7e;animation:load 1.4s infinite}
+@keyframes load{from{transform:translateX(-120%)}to{transform:translateX(220%)}}@keyframes pulse{50%{transform:scale(1.2)}}
+#envelope-screen{min-height:100vh;display:none;align-items:center;justify-content:center;flex-direction:column;position:relative;overflow:hidden;background:linear-gradient(145deg,#fff5f7,#ffe8ee)}
+.tiny-title{position:absolute;top:40px;font-size:10px;letter-spacing:4px;color:#b27984}.envelope-wrap{width:290px;height:210px;position:relative;cursor:pointer;perspective:900px;filter:drop-shadow(0 20px 22px rgba(120,70,80,.16))}
+.envelope{position:absolute;width:100%;height:175px;bottom:0;background:#fffdfd;border-radius:4px 4px 12px 12px}.envelope:before{content:"";position:absolute;inset:0;background:linear-gradient(32deg,transparent 49%,#f3e7e9 50%,transparent 51%),linear-gradient(-32deg,transparent 49%,#f3e7e9 50%,transparent 51%);border-radius:inherit}
+.flap{position:absolute;width:0;height:0;left:0;top:35px;border-left:145px solid transparent;border-right:145px solid transparent;border-top:105px solid #fff;transform-origin:top center;z-index:4;transition:transform 1s ease}.seal{position:absolute;z-index:8;width:53px;height:53px;background:#a92e48;border-radius:50%;left:50%;top:89px;transform:translateX(-50%);display:grid;place-items:center;color:#ffd7df;font-size:25px;transition:.45s}.open .flap{transform:rotateX(180deg)}.open .seal{opacity:0;transform:translateX(-50%) scale(.3)}
+.envelope-label{margin-top:34px;text-align:center}.for{font-family:cursive;font-size:26px;color:#7b5059}.tap{margin-top:7px;font-size:9px;letter-spacing:3px;color:#ba7b88}
+#flowers{position:fixed;inset:0;z-index:40;display:none;opacity:0;overflow:hidden;background:radial-gradient(circle at 12% 25%,#fff 0 5%,#f7cad4 6% 11%,transparent 12%),radial-gradient(circle at 30% 80%,#fff7f8 0 6%,#ee9fb2 7% 14%,transparent 15%),radial-gradient(circle at 72% 30%,#fff 0 6%,#f2b5c3 7% 14%,transparent 15%),radial-gradient(circle at 92% 75%,#fff 0 5%,#e99aad 6% 13%,transparent 14%),radial-gradient(circle at 50% 50%,#fff5f7 0 10%,#f0b1bf 11% 22%,#d98499 23% 31%,#fbe1e7 32%);background-color:#f6c4cf;transition:opacity 1.2s}.show{opacity:1!important}
+#letter-page{display:none;min-height:100vh;padding:55px 18px 90px;position:relative;background:linear-gradient(145deg,#ffecef,#fff5f6 55%,#ffe7ed)}.letter-container{width:min(100%,620px);margin:auto}.letter-top{text-align:center;margin-bottom:25px}.letter-top .small{font-size:9px;letter-spacing:4px;color:#b77986}
+.paper{background:var(--paper);border-radius:3px;padding:42px 28px 45px;min-height:600px;box-shadow:0 25px 60px rgba(124,65,79,.16)}.paper-head{text-align:center;border-bottom:1px solid #f0d9df;padding-bottom:23px;margin-bottom:28px}h1{font-family:Georgia,serif;font-weight:400;font-size:32px;color:#563b41}.date{font-size:9px;letter-spacing:3px;margin-top:9px;color:#ba818d}.dearest{font-family:cursive;font-size:29px;margin-bottom:19px;color:#9e465a}#typewriter{font-family:cursive;font-size:21px;line-height:1.55;color:#59454a;white-space:pre-wrap}.cursor{display:inline-block;width:2px;height:20px;background:#c06579;animation:blink .7s infinite}@keyframes blink{50%{opacity:0}}
+#signature{opacity:0;margin-top:30px;text-align:right;transition:opacity 1.5s}.sign-small{font-size:9px;letter-spacing:2px;color:#b47d88}.sign{font-family:cursive;font-size:29px;color:#a84359;margin-top:4px}.save-btn{display:block;width:100%;border:0;margin-top:25px;padding:17px;border-radius:100px;background:#b94f66;color:white;font-size:10px;font-weight:600;letter-spacing:2.5px;cursor:pointer}.answer-transition{display:none;margin-top:25px;padding:30px 16px;text-align:center}
+.answer-transition .mini-heart{font-size:28px;color:#c65e75;animation:pulse 1s infinite;margin-bottom:12px}
+.answer-transition .transition-text{font-size:9px;letter-spacing:3px;color:#aa7480;margin-bottom:14px}
+.answer-transition .transition-line{width:130px;height:2px;background:#f0ccd5;margin:auto;overflow:hidden}
+.answer-transition .transition-line:after{content:"";display:block;width:45%;height:100%;background:#bd6074;animation:load 1.2s infinite}
+.answer-box{display:none;margin-top:25px;padding:24px 16px;text-align:center;background:rgba(255,255,255,.65);border:1px solid #f1ced7;border-radius:18px}
+.answer-box h2{font-family:cursive;font-size:24px;font-weight:400;color:#8f4657;margin-bottom:6px}
+.answer-box p{font-size:11px;color:#aa7480;margin-bottom:20px}
+.answer-buttons{position:relative;min-height:65px;display:flex;align-items:center;justify-content:center;gap:16px}
+.answer-btn{border:0;border-radius:100px;padding:13px 25px;font-size:11px;font-weight:bold;letter-spacing:1.5px;cursor:pointer}
+.yes-btn{background:#b94f66;color:#fff;box-shadow:0 9px 20px rgba(169,57,82,.2)}
+.no-btn{background:#fff;color:#a45b6a;border:1px solid #e8b9c4;transition:left .15s ease,top .15s ease}
+.answer-success{display:none;font-family:cursive;font-size:22px;color:#a84359;padding:8px 0}
+.save-btn{display:none;width:100%;border:0;margin-top:25px;padding:17px;border-radius:100px;background:#b94f66;color:white;font-size:10px;font-weight:600;letter-spacing:2.5px;cursor:pointer}
+.footer{text-align:center;margin-top:25px;font-family:cursive;color:#b17986;font-size:16px}
+.heart{position:fixed;z-index:3;top:-20px;color:rgba(211,100,124,.32);pointer-events:none;animation:falling linear forwards}@keyframes falling{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
+</style>
+</head>
+<body>
+<section id="loading"><div class="loading-box"><div class="loading-heart">♡</div><div class="loading-text">OPENING YOUR LETTER...</div><div class="loading-line"></div></div></section>
+<section id="envelope-screen"><div class="tiny-title">A LITTLE SOMETHING FOR YOU</div><div><div class="envelope-wrap" id="envelope"><div class="envelope"></div><div class="flap"></div><div class="seal">♡</div></div><div class="envelope-label"><div class="for">♡ For Neva ♡</div><div class="tap">TAP TO OPEN</div></div></div></section>
+<section id="flowers"></section>
+<main id="letter-page"><div class="letter-container"><div class="letter-top"><div class="small">JUST BETWEEN YOU &amp; ME ♡</div></div><article class="paper"><header class="paper-head"><h1>confession letter</h1><div class="date">27 OKT 2026</div></header><div class="dearest">Dearest Nepaa,</div><span id="typewriter"></span><span class="cursor" id="cursor"></span><div id="signature"><div class="sign-small">WITH LOVE,</div><div class="sign">from Alip ♡</div></div></article><div class="answer-transition" id="answerTransition">
+<div class="mini-heart">♡</div>
+<div class="transition-text">ONE MORE THING...</div>
+<div class="transition-line"></div>
+</div>
+<div class="answer-box" id="answerBox">
+<h2>kamu bakal trima kan? 🥺♡</h2>
+<p>pilih jawabannya yaa ♡</p>
+<div class="answer-buttons" id="answerButtons">
+<button class="answer-btn yes-btn" id="yesBtn">IYA ♡</button>
+<button class="answer-btn no-btn" id="noBtn">GAK</button>
+</div>
+<div class="answer-success" id="answerSuccess">yeayyy, makasih udah nerima ♡</div>
+</div>
+<button class="save-btn" id="saveBtn">♡ &nbsp; SIMPAN SURAT INI</button><div class="footer">made with a little bit of courage ♡</div></div></main>
+<script>
+(function(){
+var loading=document.getElementById("loading"), envelopeScreen=document.getElementById("envelope-screen"), envelope=document.getElementById("envelope"), flowers=document.getElementById("flowers"), letterPage=document.getElementById("letter-page"), typewriter=document.getElementById("typewriter"), signature=document.getElementById("signature"), cursor=document.getElementById("cursor");
+var letterText="hai Neva, mungkin kita belum bisa ketemu dan kebanyakan waktu kita cuma dipisahin sama layar. tapi anehnya, kamu tetap bisa bikin hari-hari aku terasa lebih seru cuma dari chat kecil kita.\n\naku suka nungguin notif dari kamu, suka baca cara kamu cerita, dan suka saat kita bisa ngobrol walaupun jaraknya jauh. buat aku, yang kita punya tetap terasa spesial.\n\naku nggak tau nanti semuanya bakal berjalan kayak gimana, tapi aku pengen terus kenal kamu lebih jauh, dengerin cerita kamu, nemenin kamu sebisa aku, dan bikin banyak kenangan bareng walaupun untuk sekarang masih lewat layar.\n\njadi lewat surat kecil ini aku cuma mau jujur... aku suka kamu, Neva. jarak mungkin bikin kita nggak bisa selalu ada di tempat yang sama, tapi itu nggak bikin perasaan aku jadi kurang nyata.\n\nsemoga suatu hari nanti kita bisa baca surat ini lagi sambil ketawa karena ternyata semuanya berawal dari dua orang yang dipertemukan lewat layar ♡";
+setTimeout(function(){loading.style.opacity="0";setTimeout(function(){loading.style.display="none";envelopeScreen.style.display="flex"},800)},1800);
+var opened=false;
+envelope.addEventListener("click",function(){if(opened)return;opened=true;envelope.classList.add("open");setTimeout(function(){flowers.style.display="block";setTimeout(function(){flowers.classList.add("show")},30)},800);setTimeout(function(){envelopeScreen.style.display="none";letterPage.style.display="block"},2200);setTimeout(function(){flowers.style.opacity="0";setTimeout(function(){flowers.style.display="none";startTyping();startHearts()},900)},2900)});
+function startTyping(){var i=0;function type(){if(i<letterText.length){var ch=letterText.charAt(i++);typewriter.textContent+=ch;setTimeout(type,ch==="."?170:ch===","?85:ch==="\n"?150:32)}else{
+cursor.style.display="none";
+signature.style.opacity="1";
+setTimeout(function(){
+ var transition=document.getElementById("answerTransition");
+ transition.style.display="block";
+ transition.scrollIntoView({behavior:"smooth",block:"center"});
+ setTimeout(function(){
+  transition.style.display="none";
+  var answerBox=document.getElementById("answerBox");
+  answerBox.style.display="block";
+  answerBox.scrollIntoView({behavior:"smooth",block:"center"});
+ },2200);
+},1400);
+}}type()}
+function startHearts(){setInterval(function(){var h=document.createElement("div");h.className="heart";h.textContent=Math.random()>.65?"♥":"♡";h.style.left=Math.random()*100+"vw";h.style.fontSize=9+Math.random()*12+"px";h.style.animationDuration=6+Math.random()*7+"s";document.body.appendChild(h);setTimeout(function(){h.remove()},14000)},750)}
+var yesBtn=document.getElementById("yesBtn"),noBtn=document.getElementById("noBtn"),answerButtons=document.getElementById("answerButtons"),answerSuccess=document.getElementById("answerSuccess"),saveBtn=document.getElementById("saveBtn");
+function runAway(){
+ var box=answerButtons.getBoundingClientRect(),btn=noBtn.getBoundingClientRect();
+ noBtn.style.position="absolute";
+ noBtn.style.left=Math.max(0,Math.random()*(box.width-btn.width))+"px";
+ noBtn.style.top=Math.max(0,Math.random()*(box.height-btn.height))+"px";
+}
+noBtn.addEventListener("mouseenter",runAway);
+noBtn.addEventListener("touchstart",function(e){e.preventDefault();runAway()},{passive:false});
+noBtn.addEventListener("click",function(e){e.preventDefault();runAway()});
+yesBtn.addEventListener("click",function(){
+ answerButtons.style.display="none";
+ answerSuccess.style.display="block";
+ saveBtn.style.display="block";
+});
+document.getElementById("saveBtn").addEventListener("click",function(){var text="CONFESSION LETTER\n27 okt 2026\n\nDearest Nepaa,\n\n"+letterText+"\n\nfrom Alip ♡";var blob=new Blob([text],{type:"text/plain;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="letter-for-nepaa.txt";document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url)},1000)});
+})();
+</script>
+</body>
+</html>
